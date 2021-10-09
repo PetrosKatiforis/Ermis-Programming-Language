@@ -1,7 +1,7 @@
 # Ermis Programming Language
 
-Ermis is an extremely simple Greek programming language aimed for educational purposes <br />
-The project contains the interpreter implemented in Python
+Ermis is an extremely simple Greek programming language dedicated into teaching students the basics of programming <br />
+The project contains the interpreter implemented in Python, using zero external dependencies
 
 <br />
 
