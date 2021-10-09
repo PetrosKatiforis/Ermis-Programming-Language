@@ -4,14 +4,15 @@ class TokenTypes(Enum):
     Let          = 0
     Identifier   = 1
     Integer      = 2
-    String       = 3
-    Bool         = 4
-    Equals       = 5
-    LeftParen    = 6
-    RightParen   = 7
-    Comma        = 8
-    Function     = 9
-    Return       = 10
+    Float        = 3
+    String       = 4
+    Bool         = 5
+    Equals       = 6
+    LeftParen    = 7
+    RightParen   = 8
+    Comma        = 9
+    Function     = 10
+    Return       = 11
 
     GreaterThan  = 15
     GreaterEqual = 16

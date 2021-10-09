@@ -278,6 +278,10 @@ class Parser:
                 self.eat(token.type)
                 return Number(token)
 
+            case TokenTypes.Float:
+                self.eat(token.type)
+                return Float(token)
+
             case TokenTypes.Bool:
                 self.eat(token.type)
                 return Boolean(token.value)

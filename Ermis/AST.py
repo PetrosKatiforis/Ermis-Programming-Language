@@ -21,6 +21,12 @@ class Number(AST):
         self.value = int(token.value)
 
 
+class Float(AST):
+    def __init__(self, token):
+        self.token = token
+        self.value = float(token.value)
+
+
 class Boolean(AST):
     def __init__(self, value):
         self.value = value
@@ -61,10 +67,12 @@ class Variable(AST):
     def __init__(self, token):
         self.name = token.value
 
+
 class FunctionCall(AST):
     def __init__(self, name, parameters):
         self.name = name
         self.parameters = parameters
+
 
 class Function(AST):
     def __init__(self, name, parameters, block):
@@ -72,15 +80,18 @@ class Function(AST):
         self.parameters = parameters
         self.block = block
 
+
 class Return(AST):
     def __init__(self, right = NOOP()):
         self.right = right
+
 
 class IfStatement(AST):
     def __init__(self, condition, block, else_block):
         self.condition = condition
         self.block = block
         self.else_block = else_block
+
 
 class WhileStatement(AST):
     def __init__(self, condition, block):

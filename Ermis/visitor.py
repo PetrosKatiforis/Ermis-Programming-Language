@@ -59,7 +59,7 @@ class ErmisVisitor(Visitor):
             self.visit(child)
 
 
-    @when(String)
+    @when(Number, Float, String)
     def visit_string(self, node):
         return node.value
 
@@ -120,11 +120,6 @@ class ErmisVisitor(Visitor):
         """
 
         return self.current_scope.find(node.name)
-
-
-    @when(Number)
-    def visit_number(self, node):
-        return node.value
 
 
     @when(IfStatement)

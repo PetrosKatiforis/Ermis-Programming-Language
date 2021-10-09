@@ -11,7 +11,7 @@ class Visitor:
 
         return self.handlers[type_name](self, node)
 
-def when(ast_type):
+def when(*parameters):
     """
     A utility decorator for the visitor class
 
@@ -21,9 +21,10 @@ def when(ast_type):
 
     def decorator(function):
         def wrapper(self, **kwargs):
-            type_name = ast_type.__name__
+            for ast_type in parameters:
+                type_name = ast_type.__name__
 
-            self.handlers[type_name] = function
+                self.handlers[type_name] = function
 
         return wrapper
 

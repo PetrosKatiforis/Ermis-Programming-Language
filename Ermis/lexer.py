@@ -121,6 +121,37 @@ class Lexer:
 
         return token
 
+    def collect_number_value(self):
+        """
+        Collects the value of the current number token
+        It's a utility function for self.collect_number
+        """
+
+        value = ""
+
+        while self.current_char and self.current_char.isdigit():
+            value += self.current_char
+            self.advance()
+
+        return value
+
+    def collect_number(self):
+        """
+        Collects a number token
+        It can either be an integer or a float
+        """
+
+        value = self.collect_number_value()
+
+        if self.current_char == ".":
+            value += self.current_char
+            self.advance()
+
+            value += self.collect_number_value()
+            return Token(TokenTypes.Float, value)
+
+        return Token(TokenTypes.Integer, value)
+
     def get_next_token(self):
         """
         Returns the next token of the lexer's state
@@ -134,7 +165,7 @@ class Lexer:
 
         if self.current_char is not None:
             if self.current_char.isdigit():
-                return self.collect_sequence(str.isdigit, TokenTypes.Integer)
+                return self.collect_number()
 
             if self.current_char == '"':
                 return self.collect_string()
