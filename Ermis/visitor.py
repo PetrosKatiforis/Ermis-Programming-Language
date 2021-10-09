@@ -13,13 +13,25 @@ class ErmisVisitor(Visitor):
         super().__init__()
 
     def execute(self):
+        """
+        Executes the parser and creates a Program instance
+        """
+
         data = self.parser.parse_compound()
         program = Program(data)
 
         return self.visit(program)
 
+
     @when(Program)
     def visit_program(self, node):
+        """
+        Visits the main program instance
+
+        It will initialize the global scope
+        and then visit the compound containing all of the source's code
+        """
+
         global_scope = LocalScope(
             scope_name = "global",
             scope_level = 1,
@@ -29,26 +41,38 @@ class ErmisVisitor(Visitor):
         self.current_scope = global_scope
         self.visit(node.data)
 
+
     @when(NOOP)
     def visit_no_operator(self, node):
         pass
 
+
     @when(Compound)
     def visit_compound(self, node):
+        """
+        Visits a compound statements
+
+        It maps its children with the Visitor.visit function
+        """
+
         for child in node.children:
             self.visit(child)
+
 
     @when(String)
     def visit_string(self, node):
         return node.value
 
+
     @when(Boolean)
     def visit_boolean(self, node):
         return node.value == "Αληθές"
 
+
     @when(Function)
     def visit_function(self, node):
         self.current_scope.insert(node.name, node)
+
 
     @when(Return)
     def visit_return(self, node):
@@ -61,6 +85,7 @@ class ErmisVisitor(Visitor):
 
         raise FoundReturn(self.visit(node.right))
 
+
     @when(VariableDefinition)
     def visit_variable_definition(self, node):
         """
@@ -71,6 +96,7 @@ class ErmisVisitor(Visitor):
         """
 
         self.current_scope.insert(node.name, self.visit(node.right))
+
 
     @when(VariableAssignment)
     def visit_variable_assignment(self, node):
@@ -85,6 +111,7 @@ class ErmisVisitor(Visitor):
 
         self.current_scope.insert(node.name, new_value)
 
+
     @when(Variable)
     def visit_variable(self, node):
         """
@@ -94,9 +121,11 @@ class ErmisVisitor(Visitor):
 
         return self.current_scope.find(node.name)
 
+
     @when(Number)
     def visit_number(self, node):
         return node.value
+
 
     @when(IfStatement)
     def visit_if_statement(self, node):
@@ -108,11 +137,13 @@ class ErmisVisitor(Visitor):
         elif node.else_block is not None:
             self.visit(node.else_block)
 
+
     @when(WhileStatement)
     def visit_while_statement(self, node):
 
         while (self.visit(node.condition)):
             self.visit(node.block)
+
 
     @when(FunctionCall)
     def visit_function_call(self, node):
@@ -160,8 +191,16 @@ class ErmisVisitor(Visitor):
 
         return return_value
 
+
     @when(BinaryOperation)
     def visit_binary_operation(self, node):
+        """
+        Visits an ermis binary operation
+
+        Depending on the current_token's type,
+        it will execute the correct operation between two expressions
+        """
+
         left = self.visit(node.left)
         right = self.visit(node.right)
 
@@ -199,6 +238,7 @@ class ErmisVisitor(Visitor):
             case TokenTypes.Or:
                 return left or right
 
+
     @when(UnaryOperation)
     def visit_unary(self, node):
         operator = node.token.type
@@ -208,3 +248,5 @@ class ErmisVisitor(Visitor):
 
         else:
             return -self.visit(node.expression)
+
+
