@@ -1,4 +1,4 @@
-from .errors import WrongTokenError
+from .exceptions import WrongTokenError
 from .token import TokenTypes
 from .AST import *
 

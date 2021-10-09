@@ -1,4 +1,4 @@
-from .errors import UndefinedVariableError
+from .exceptions import UndefinedVariableError
 
 class LocalScope:
     """

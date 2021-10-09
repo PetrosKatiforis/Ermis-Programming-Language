@@ -1,5 +1,4 @@
 from .token import TokenTypes
-from .builtins import *
 
 tokens = {
     "=": TokenTypes.Equals,
@@ -30,9 +29,3 @@ keywords = {
     "ή": TokenTypes.Or
 }
 
-builtin_functions  = {
-    "εμφάνισε": ermis_print,
-    "διάβασε": ermis_input,
-    "περίμενα": ermis_wait,
-    "ρίζα": ermis_sqrt
-}

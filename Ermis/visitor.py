@@ -1,9 +1,9 @@
-from .config import builtin_functions
+from .builtins import ermis_globals
 from .token import TokenTypes
 from .scope import LocalScope
 from .utils import Visitor, when
+from .exceptions import *
 from .AST import *
-from .errors import *
 
 class ErmisVisitor(Visitor):
     def __init__(self, parser):
@@ -157,10 +157,10 @@ class ErmisVisitor(Visitor):
         parameters = list(map(self.visit, node.parameters))
 
         # Searching for a builtin method
-        builtin = builtin_functions.get(node.name)
+        builtin = ermis_globals.get(node.name)
 
         if builtin is not None:
-            return builtin(parameters)
+            return builtin(*parameters)
 
         # Creating the function's scope
         function = self.current_scope.find(node.name)

@@ -1,13 +1,30 @@
 from time import sleep
 
-def ermis_print(parameters):
-    print(*parameters)
+ermis_globals = {}
 
-def ermis_wait(parameters):
-    sleep(parameters[0])
+def builtin(function):
+    ermis_globals[function.__name__] = function
 
-def ermis_input(parameters):
-    return input(parameters[0])
+@builtin
+def εμφάνισε(*parameters):
+    for param in parameters:
+        if isinstance(param, bool):
+            print(["Ψευδές", "Αληθές"][param], end=" ")
+        else:
+            print(param, end=" ")
 
-def ermis_sqrt(parameters):
-    return parameters[0] ** 0.5
+    print()
+
+@builtin
+def περίμενε(delay):
+    sleep(delay)
+
+@builtin
+def διάβασε(message):
+    return input(message)
+
+@builtin
+def ρίζα(number):
+    return number ** 0.5
+
+

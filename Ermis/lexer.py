@@ -1,4 +1,4 @@
-from .errors import UnexpectedTokenError
+from .exceptions import UnexpectedTokenError
 from .config import tokens, keywords
 from .token import TokenTypes, Token
 
