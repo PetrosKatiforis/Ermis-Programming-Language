@@ -7,7 +7,7 @@ The project contains the interpreter implemented in Python, using zero external 
 
 <br />
 
-```
+```go
 συνάρτηση πρόσθεσε (α, β) {
   εμφάνισε ("Με κάλεσαν!");
   
