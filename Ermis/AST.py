@@ -28,8 +28,8 @@ class Float(AST):
 
 
 class Boolean(AST):
-    def __init__(self, value):
-        self.value = value
+    def __init__(self, token):
+        self.value = token.value
 
 
 class String(AST):

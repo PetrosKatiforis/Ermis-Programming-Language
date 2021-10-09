@@ -267,38 +267,26 @@ class Parser:
         or a parenthesised expression
         """
 
-        token = self.current_token
+        if self.current_token.type == TokenTypes.Identifier:
+            return self.parse_variable()
+
+        self.eat(self.current_token.type)
+        token = self.previous_token
 
         match token.type:
             case TokenTypes.Plus | TokenTypes.Minus:
-                self.eat(token.type)
                 return UnaryOperation(token, self.factor())
 
-            case TokenTypes.Integer:
-                self.eat(token.type)
-                return Number(token)
-
-            case TokenTypes.Float:
-                self.eat(token.type)
-                return Float(token)
-
-            case TokenTypes.Bool:
-                self.eat(token.type)
-                return Boolean(token.value)
-
-            case TokenTypes.String:
-                self.eat(token.type)
-                return String(token)
-
             case TokenTypes.LeftParen:
-                self.eat(token.type)
                 node = self.expression()
 
                 self.eat(TokenTypes.RightParen)
                 return node
 
-            case TokenTypes.Identifier:
-                return self.parse_variable()
+            case TokenTypes.Integer: return Number(token)
+            case TokenTypes.Float:   return Float(token)
+            case TokenTypes.Bool:    return Boolean(token)
+            case TokenTypes.String:  return String(token)
 
     def term(self):
         """
