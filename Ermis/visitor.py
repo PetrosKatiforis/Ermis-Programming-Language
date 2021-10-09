@@ -205,38 +205,17 @@ class ErmisVisitor(Visitor):
         right = self.visit(node.right)
 
         match node.token.type:
-            case TokenTypes.Plus:
-                return left + right
-
-            case TokenTypes.Minus:
-                return left - right
-
-            case TokenTypes.Multiply:
-                return left * right
-
-            case TokenTypes.Divide:
-                return left / right
-
-            case TokenTypes.GreaterThan:
-                return left > right
-
-            case TokenTypes.GreaterEqual:
-                return left >= right
-
-            case TokenTypes.LessThan:
-                return left < right
-
-            case TokenTypes.LessEqual:
-                return left <= right
-
-            case TokenTypes.NotEquals:
-                return left != right
-
-            case TokenTypes.And:
-                return left and right
-
-            case TokenTypes.Or:
-                return left or right
+            case TokenTypes.Plus:         return left + right
+            case TokenTypes.Minus:        return left - right
+            case TokenTypes.Multiply:     return left * right
+            case TokenTypes.Divide:       return left / right
+            case TokenTypes.GreaterThan:  return left > right
+            case TokenTypes.GreaterEqual: return left >= right
+            case TokenTypes.LessThan:     return left < right
+            case TokenTypes.LessEqual:    return left <= right
+            case TokenTypes.NotEquals:    return left != right
+            case TokenTypes.And:          return left and right
+            case TokenTypes.Or:           return left or right
 
 
     @when(UnaryOperation)

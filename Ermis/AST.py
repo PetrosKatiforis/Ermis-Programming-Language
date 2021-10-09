@@ -4,27 +4,33 @@ class AST:
 class NOOP(AST):
     pass
 
+
 class Program(AST):
     def __init__(self, data):
         self.data = data
 
+
 class Compound(AST):
     def __init__(self, value = []):
         self.children = value
+
 
 class Number(AST):
     def __init__(self, token):
         self.token = token
         self.value = int(token.value)
 
+
 class Boolean(AST):
     def __init__(self, value):
         self.value = value
+
 
 class String(AST):
     def __init__(self, token):
         self.token = token
         self.value = token.value
+
 
 class BinaryOperation(AST):
     def __init__(self, left, token, right):
@@ -32,20 +38,24 @@ class BinaryOperation(AST):
         self.right = right
         self.left = left
 
+
 class UnaryOperation(AST):
     def __init__(self, token, expression):
         self.token = token
         self.expression = expression
+
 
 class VariableDefinition(AST):
     def __init__(self, name, right):
         self.name = name
         self.right = right
 
+
 class VariableAssignment(AST):
     def __init__(self, name, right):
         self.name = name
         self.right = right
+
 
 class Variable(AST):
     def __init__(self, token):
