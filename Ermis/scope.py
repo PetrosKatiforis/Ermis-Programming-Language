@@ -1,4 +1,7 @@
-from .exceptions import UndefinedVariableError
+from .exceptions import (
+    UndefinedVariableError, 
+    AlreadyDefinedError
+)
 
 class LocalScope:
     """
@@ -6,14 +9,16 @@ class LocalScope:
     It is used for both global and local scopes
     """
 
-    def __init__(self, scope_name, scope_level, enclosing_scope = None):
+    def __init__(self, scope_name, enclosing_scope = None):
         self.data = enclosing_scope.data if enclosing_scope is not None else {}
 
         self.scope_name = scope_name
-        self.scope_level = scope_level
         self.enclosing_scope = enclosing_scope
 
     def insert(self, name, value):
+        if name in self.data:
+            raise AlreadyDefinedError(name)
+
         self.data[name] = value
 
     def find(self, name):

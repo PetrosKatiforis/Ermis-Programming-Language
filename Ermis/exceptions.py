@@ -54,7 +54,14 @@ class UndefinedVariableError(ErmisError):
 class MissingFunctionParameter(ErmisError):
     def __init__(self, name):
         super().__init__(
-            f"Το κάλεσμα της συνάρτησης {name} δεν έχει τις απαρέτητες παραμέτρους..."
+            f"Το κάλεσμα της συνάρτησης <<{name}>> δεν έχει τις απαρέτητες παραμέτρους..."
+        )
+
+
+class AlreadyDefinedError(ErmisError):
+    def __init__(self, name):
+        super().__init__(
+            f"Η μεταβλητή <<{name}>> έχει ήδη δημιουργηθεί!"
         )
 
 

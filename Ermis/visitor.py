@@ -34,7 +34,6 @@ class ErmisVisitor(Visitor):
 
         global_scope = LocalScope(
             scope_name = "global",
-            scope_level = 1,
             enclosing_scope = self.current_scope
         )
 
@@ -162,7 +161,6 @@ class ErmisVisitor(Visitor):
 
         function_scope = LocalScope(
             scope_name = node.name,
-            scope_level = self.current_scope.scope_level + 1,
             enclosing_scope = self.current_scope
         )
 
