@@ -21,3 +21,10 @@ The project contains the interpreter implemented in Python, using zero external 
 έστω αποτέλεσμα = παραγοντικό (5);
 εμφάνισε (αποτέλεσμα);
 ```
+
+<br /> <br />
+
+## Examples
+Simple number guessing game
+
+<img src="https://imgur.com/OtbfodG.png" />
