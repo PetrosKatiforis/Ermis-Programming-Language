@@ -94,7 +94,7 @@ class ErmisVisitor(Visitor):
         The variable's value will be visitted as an expression
         """
 
-        self.current_scope.insert(node.name, self.visit(node.right))
+        self.current_scope.create(node.name, self.visit(node.right))
 
 
     @when(VariableAssignment)
