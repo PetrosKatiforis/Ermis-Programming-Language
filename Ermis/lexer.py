@@ -31,7 +31,7 @@ class Lexer:
     def peek(self, offset = 1):
         """
         Peeks on the next characters of the lexer source
-        It's useful for tokens that may interfer with others
+        It's useful for tokens that are made of multiple characters
         """
 
         return self.source[min(self.pos + offset, len(self.source) - 1)]
@@ -43,7 +43,7 @@ class Lexer:
 
     def skip_comment(self):
         """
-        Skips an ermis comments
+        Skips an ermis comment
         Comment are represented with a double 'greater than' character:
 
         >> This is a comment
@@ -58,9 +58,7 @@ class Lexer:
 
     def advance_token(self, token_type):
         """
-        A utility function to quickly create tokens
-        that require a single character for their values
-
+        A utility function to quickly create tokens that require a single character for their values
         Before returning, it will also advance to the next character
         """
 
