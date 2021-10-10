@@ -44,7 +44,7 @@ class Lexer:
     def skip_comment(self):
         """
         Skips an ermis comments
-        Comment are represented with a double 'grater than' character:
+        Comment are represented with a double 'greater than' character:
 
         >> This is a comment
         """
