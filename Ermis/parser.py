@@ -56,6 +56,7 @@ class Parser:
             case TokenTypes.Function:   return self.parse_function()
             case TokenTypes.Return:     return self.parse_return()
             case TokenTypes.If:         return self.parse_if_statement()
+            case TokenTypes.While:      return self.parse_while_statement()
 
         return NOOP()
 
