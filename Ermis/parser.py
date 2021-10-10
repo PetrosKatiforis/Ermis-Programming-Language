@@ -13,9 +13,7 @@ class Parser:
         """
         Advances the parser
 
-        The eat function accepts a TokenType,
-        which is later 'eaten' by the parser which moves to next token
-
+        The eat function accepts a TokenType, which is later 'eaten' by the parser which moves to next token
         If the TokenType is different than what was expected, it will throw an exception
         """
 
@@ -63,8 +61,7 @@ class Parser:
 
     def parse_while_statement(self):
         """
-        Returns a parsed while statement
-        It contains a condition and a code block
+        Returns a parsed while statement, containing a condition and a code block
         """
 
         self.eat(TokenTypes.While)
@@ -84,8 +81,7 @@ class Parser:
         Returns a compound instance
         by parsing a block of code inside curly brackets
 
-        It's a utility function for other AST types,
-        such as if statements and functions
+        It's a utility function for other AST types, such as if statements and functions
         """
 
         self.eat(TokenTypes.LeftCurly)
@@ -141,10 +137,10 @@ class Parser:
         Parses an Ermis function declaration
         Simple example (including a return statement):
 
-        συνάρτηση πες_γεια() {
-            εμφάνισε ("Γειά!")
+        συνάρτηση πες_γεια () {
+            εμφάνισε ("Γειά!");
 
-            επέστρεψε "Λειτουργεί"
+            επέστρεψε "Λειτουργεί";
         }
         """
 
@@ -196,9 +192,7 @@ class Parser:
     def parse_function_call(self):
         """
         Parses a function call
-
-        Arguments are treated as indivdual expressions
-        and they are seperated by a comma
+        Arguments are treated as indivdual expressions and they are seperated by a comma
         """
 
         name = self.previous_token.value
@@ -315,7 +309,6 @@ class Parser:
     def expression(self):
         """
         Parses an ermis expression
-
         An expression is a combination of terms, connected by addition or substraction
         """
 
