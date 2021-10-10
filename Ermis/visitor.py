@@ -209,6 +209,7 @@ class ErmisVisitor(Visitor):
             case TokenTypes.LessThan:     return left < right
             case TokenTypes.LessEqual:    return left <= right
             case TokenTypes.NotEquals:    return left != right
+            case TokenTypes.EqualsEquals: return left == right
             case TokenTypes.And:          return left and right
             case TokenTypes.Or:           return left or right
 

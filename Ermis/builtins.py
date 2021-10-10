@@ -27,4 +27,12 @@ def διάβασε(message):
 def ρίζα(number):
     return number ** 0.5
 
+@builtin
+def mod(a, b):
+    return a % b
+
+@builtin
+def div(a, b):
+    return a // b
+
 

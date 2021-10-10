@@ -112,6 +112,11 @@ class Lexer:
         return token
 
     def collect_identifier(self):
+        """
+        Collects an identifier token
+        It will later check if it's a keyword
+        """
+        
         token = self.collect_sequence(
             lambda s: s.isalnum() or s == "_",
             TokenTypes.Identifier
@@ -152,6 +157,19 @@ class Lexer:
 
         return Token(TokenTypes.Integer, value)
 
+    def advance_double(self, token_type):
+        """
+        Returns a 2 characters long token
+        and advances the lexer twice
+        """
+        
+        token = Token(token_type, self.current_char + self.peek())
+
+        self.advance()
+        self.advance()
+
+        return token
+
     def get_next_token(self):
         """
         Returns the next token of the lexer's state
@@ -174,10 +192,10 @@ class Lexer:
                 return self.collect_identifier()
 
             match self.current_char + self.peek():
-                case "==": return advance_token(TokenTypes.EqualEqual)
-                case "!=": return advance_token(TokenTypes.NotEquals)
-                case ">=": return advance_token(TokenTypes.GreaterEqual)
-                case "<=": return advance_token(TokenTypes.LessEqual)
+                case "==": return self.advance_double(TokenTypes.EqualsEquals)
+                case "!=": return self.advance_double(TokenTypes.NotEquals)
+                case ">=": return self.advance_double(TokenTypes.GreaterEqual)
+                case "<=": return self.advance_double(TokenTypes.LessEqual)
 
             for character, token_type in tokens.items():
                 if self.current_char == character:
